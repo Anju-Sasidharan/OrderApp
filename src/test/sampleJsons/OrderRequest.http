@@ -1,0 +1,34 @@
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+ {
+    "item": "Head Phones",
+    "quantity": 3,
+    "customerName": "Nala",
+    "customerEmail": "Nala@example.com",
+    "price": 1500,
+    "address": "133 East St"
+  }
+###
+//{
+//  "item": "Laptop",
+//  "quantity": 1,
+//  "customerName": "Nemo",
+//  "customerEmail": "Nemo@example.com",
+//  "price": 2000,
+//  "address": "158 Main St"
+//}
+###
+#  {
+#    "item": "iPhones",
+#    "quantity": 1,
+#    "customerName": "Nala",
+#    "customerEmail": "Nala@example.com",
+#    "price": 1500,
+#    "address": "133 East St"
+#  }
+
+###
+
+
+

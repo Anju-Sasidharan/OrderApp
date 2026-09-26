@@ -5,6 +5,7 @@ import com.example.orderapp.data.OrderStatus;
 import com.example.orderapp.dto.OrderRequestDto;
 import com.example.orderapp.dto.OrderResponseDto;
 import com.example.orderapp.dto.ShipmentUpdateDto;
+import com.example.orderapp.exception.InvalidStatusTransitionException;
 import com.example.orderapp.exception.OrderNotFoundException;
 import com.example.orderapp.notification.NotificationService;
 import com.example.orderapp.repository.OrderRepository;
@@ -19,9 +20,9 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final NotificationService notificationService;
 
-    public OrderServiceImpl(OrderRepository orderRepository, NotificationService notificationService){
+    public OrderServiceImpl(OrderRepository orderRepository, NotificationService nS){
         this.orderRepository = orderRepository;
-        this.notificationService = notificationService;
+        this.notificationService = nS;
     }
     @Override
     public OrderResponseDto createOrder(OrderRequestDto request) {
@@ -88,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
 
     private Order findOrder(Long orderId){
         return orderRepository.findById(orderId)
-                .orElseThrow(()-> new OrderNotFoundException("Order not found with id : "+orderId));;
+                .orElseThrow(()-> new OrderNotFoundException("Order not found with id : "+orderId));
     }
 
     private void validateTransition(OrderStatus current , OrderStatus next){
@@ -98,6 +99,10 @@ public class OrderServiceImpl implements OrderService {
             case SHIPPED ->  next == OrderStatus.DELIVERED;
             case DELIVERED,CANCELLED -> false;
         };
+
+        if(!valid){
+            throw new InvalidStatusTransitionException("Order Status Transition Not Valid");
+        }
     }
     private OrderResponseDto toResponseDto(Order od){
         OrderResponseDto response = new OrderResponseDto();

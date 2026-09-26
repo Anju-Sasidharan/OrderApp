@@ -8,7 +8,7 @@ import com.example.orderapp.data.Order;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoggingNotificationService {
+public class LoggingNotificationService implements NotificationService {
     private static final Logger log = LoggerFactory.getLogger(LoggingNotificationService.class);
 
     @Override

@@ -1,0 +1,7 @@
+### Ship the order
+PATCH http://localhost:8080/api/orders/2/ship
+Content-Type: application/json
+
+{
+    "trackingNo" : "TRACK01234"
+}
