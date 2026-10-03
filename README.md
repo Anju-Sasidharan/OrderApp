@@ -58,8 +58,8 @@ Content-Type: application/json
 {
   "item": "Laptop",
   "quantity": 1,
-  "customerName": "Anju",
-  "customerEmail": "anju@example.com",
+  "customerName": "Name",
+  "customerEmail": "Name@example.com",
   "price": 999.99,
   "address": "123 Main St"
 }
